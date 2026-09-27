@@ -635,6 +635,18 @@
       <div class="contact-grid">
 
         <div class="contact-side">
+
+          <!-- 微信二维码：图片不存在时由 JS 自动隐藏，不会留下空位 -->
+          <div class="card contact-wechat reveal" id="wechatCard" hidden>
+            <img class="wechat-qr" id="wechatQr" src="assets/img/wechat-qr.png"
+                 alt="谌基涛的微信二维码" width="152" height="152" loading="lazy">
+            <div class="wechat-meta">
+              <span class="contact-k">微信</span>
+              <span class="contact-v">扫码加我，沟通更快</span>
+              <span class="wechat-tip">备注「面试」或「岗位咨询」我会优先通过</span>
+            </div>
+          </div>
+
           <button class="card contact-card reveal" type="button" data-copy="1499938212@qq.com" data-copy-label="邮箱">
             <span class="contact-ico" aria-hidden="true"><svg class="icon"><use href="#i-mail"></use></svg></span>
             <span class="contact-body">
@@ -678,7 +690,7 @@
             <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
             发送消息
           </h3>
-          <p class="form-hint">填写后点击发送，会通过你的默认邮件客户端把内容发到我的邮箱。</p>
+          <p class="form-hint">填好后直接投递到我的邮箱，我一般当天回复。也可以点左侧卡片复制邮箱，用你自己的邮箱发给我。</p>
 
           <div class="field">
             <label for="cf-name">你的称呼 <span class="req">*</span></label>
@@ -686,8 +698,8 @@
           </div>
 
           <div class="field">
-            <label for="cf-from">你的邮箱 <span class="req">*</span></label>
-            <input id="cf-from" name="from" type="email" required autocomplete="email" placeholder="name@company.com">
+            <label for="cf-email">你的邮箱 <span class="req">*</span></label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="name@company.com">
           </div>
 
           <div class="field">
@@ -700,12 +712,16 @@
             <textarea id="cf-message" name="message" rows="5" required placeholder="简单说明岗位、公司或想聊的内容…"></textarea>
           </div>
 
+          <!-- 蜜罐字段：只有爬虫会填，真人看不见 -->
+          <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
           <p class="form-error" id="formError" role="alert" hidden></p>
+          <p class="form-ok" id="formOk" role="status" hidden></p>
 
           <div class="form-actions">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary" type="submit" id="formSubmit">
               <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
-              发送邮件
+              发送消息
             </button>
             <button class="btn btn-ghost" type="reset">清空</button>
           </div>

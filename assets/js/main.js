@@ -22,7 +22,17 @@
     deleteSpeed: 45,
     holdTime: 1600,
     // 接收联系表单的邮箱
-    mailTo: '1499938212@qq.com'
+    mailTo: '1499938212@qq.com',
+
+    /* ---- 在线表单投递（Web3Forms）--------------------------------------
+       去 https://web3forms.com 填一次邮箱，会立刻给你一串 access key，
+       粘到下面引号里即可。填好之后访客点「发送消息」就直接进你邮箱，
+       不再依赖他电脑上装没装邮件客户端。
+
+       留空也完全没问题：会自动退回「打开访客的邮件客户端」模式。
+       ------------------------------------------------------------------ */
+    formAccessKey: '',
+    formEndpoint: 'https://api.web3forms.com/submit'
   };
 
   /* ------------------------------------------------------------------
@@ -502,20 +512,46 @@
   });
 
   /* ------------------------------------------------------------------
-     8. 联系表单 → 调用本机邮件客户端
+     8. 联系表单 → 在线投递，失败则退回邮件客户端
      ------------------------------------------------------------------ */
   var form = $('#contactForm');
   if (form) {
     var formError = $('#formError');
+    var formOk = $('#formOk');
+    var submitBtn = $('#formSubmit');
 
     function showError(message) {
+      if (formOk) formOk.hidden = true;
       if (!formError) return;
       formError.textContent = message;
       formError.hidden = false;
     }
-    function clearError() {
+    function showOk(message) {
       if (formError) formError.hidden = true;
+      if (!formOk) return;
+      formOk.textContent = message;
+      formOk.hidden = false;
+    }
+    function clearStatus() {
+      if (formError) formError.hidden = true;
+      if (formOk) formOk.hidden = true;
       $$('.field', form).forEach(function (f) { f.classList.remove('has-error'); });
+    }
+    function setLoading(on) {
+      if (!submitBtn) return;
+      submitBtn.disabled = on;
+      submitBtn.style.opacity = on ? '.65' : '';
+      submitBtn.textContent = on ? '发送中…' : '';
+      if (!on) {
+        submitBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg> 发送消息';
+      }
+    }
+
+    /* 兜底通道：唤起访客本机邮件客户端 */
+    function openMailClient(data) {
+      window.location.href = 'mailto:' + CONFIG.mailTo +
+        '?subject=' + encodeURIComponent(data.subject) +
+        '&body=' + encodeURIComponent(data.body);
     }
 
     form.addEventListener('input', function (e) {
@@ -525,32 +561,89 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      clearError();
+      clearStatus();
 
       var name = $('#cf-name').value.trim();
-      var from = $('#cf-from').value.trim();
+      var email = $('#cf-email').value.trim();
       var subject = $('#cf-subject').value.trim();
       var message = $('#cf-message').value.trim();
-      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(from);
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
 
-      if (!name)   { $('#cf-name').closest('.field').classList.add('has-error');   return showError('请填写你的称呼。'); }
-      if (!emailOk) { $('#cf-from').closest('.field').classList.add('has-error');  return showError('请填写有效的邮箱地址。'); }
+      if (!name)    { $('#cf-name').closest('.field').classList.add('has-error');    return showError('请填写你的称呼。'); }
+      if (!emailOk) { $('#cf-email').closest('.field').classList.add('has-error');   return showError('请填写有效的邮箱地址。'); }
       if (!message) { $('#cf-message').closest('.field').classList.add('has-error'); return showError('请填写要发送的内容。'); }
 
       var finalSubject = subject || ('来自个人主页的留言 · ' + name);
-      var body = message + '\n\n——\n' + name + '\n' + from;
+      var mail = {
+        subject: finalSubject,
+        body: message + '\n\n——\n' + name + '\n' + email
+      };
 
-      window.location.href = 'mailto:' + CONFIG.mailTo +
-        '?subject=' + encodeURIComponent(finalSubject) +
-        '&body=' + encodeURIComponent(body);
+      // 还没配置 access key：直接用邮件客户端，并说清楚
+      if (!CONFIG.formAccessKey) {
+        openMailClient(mail);
+        showOk('已打开你的邮件客户端，确认后发送即可。');
+        form.reset();
+        return;
+      }
 
-      toast('已打开邮件客户端，请确认后发送');
-      form.reset();
+      setLoading(true);
+
+      fetch(CONFIG.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: CONFIG.formAccessKey,
+          subject: finalSubject,
+          from_name: name,
+          name: name,
+          email: email,
+          message: message,
+          botcheck: false
+        })
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; })
+            .then(function (data) { return { ok: res.ok, data: data }; });
+        })
+        .then(function (res) {
+          if (res.ok && res.data && res.data.success) {
+            setLoading(false);
+            showOk('已经发送到我的邮箱了，我会尽快回复你。');
+            form.reset();
+            toast('发送成功');
+          } else {
+            throw new Error((res.data && res.data.message) || 'send failed');
+          }
+        })
+        .catch(function () {
+          // 网络或服务异常时不让留言丢失：自动改走邮件客户端
+          setLoading(false);
+          openMailClient(mail);
+          showOk('在线投递没成功，已改为打开你的邮件客户端，确认后发送即可。');
+          toast('已切换为邮件客户端发送');
+        });
     });
 
     form.addEventListener('reset', function () {
-      clearError();
+      clearStatus();
     });
+  }
+
+  /* ------------------------------------------------------------------
+     8.5 微信二维码：图片存在才显示整张卡片，否则完全隐藏
+     ------------------------------------------------------------------ */
+  var wechatCard = $('#wechatCard');
+  var wechatQr = $('#wechatQr');
+  if (wechatCard && wechatQr) {
+    var showWechat = function () { wechatCard.hidden = false; };
+    var hideWechat = function () { wechatCard.hidden = true; };
+    if (wechatQr.complete) {
+      wechatQr.naturalWidth > 0 ? showWechat() : hideWechat();
+    } else {
+      wechatQr.addEventListener('load', showWechat);
+      wechatQr.addEventListener('error', hideWechat);
+    }
   }
 
   /* ------------------------------------------------------------------

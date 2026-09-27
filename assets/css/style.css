@@ -1173,7 +1173,51 @@ button.contact-card:hover .contact-act { color: var(--accent); background: var(-
 .contact-act-link:hover { color: var(--accent); background: var(--accent-soft); }
 
 .contact-form { padding: 26px; }
-.form-hint { margin: -6px 0 18px; color: var(--muted); font-size: .85rem; }
+.form-hint { margin: -6px 0 18px; color: var(--muted); font-size: .85rem; line-height: 1.7; }
+
+/* 微信二维码卡片：图片加载失败时整块隐藏（由 JS 控制 hidden） */
+.contact-wechat {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+}
+.contact-wechat[hidden] { display: none !important; }
+.wechat-qr {
+  flex: none;
+  width: 116px;
+  height: 116px;
+  border-radius: 10px;
+  background: #fff;
+  padding: 6px;
+  border: 1px solid var(--border);
+  object-fit: contain;
+  image-rendering: auto;
+}
+.wechat-meta { display: grid; gap: 4px; min-width: 0; }
+.wechat-tip { font-size: .76rem; color: var(--muted); line-height: 1.6; }
+
+/* 蜜罐字段：对真人不可见，只用来钓爬虫 */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 发送成功提示 */
+.form-ok {
+  margin-bottom: 14px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+  background: var(--accent-soft);
+  color: var(--accent-3);
+  font-size: .87rem;
+  line-height: 1.65;
+}
+html[data-theme="dark"] .form-ok { color: var(--accent-2); }
 
 .field { margin-bottom: 15px; }
 .field label {

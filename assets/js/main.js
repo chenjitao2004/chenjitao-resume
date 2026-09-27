@@ -631,19 +631,16 @@
   }
 
   /* ------------------------------------------------------------------
-     8.5 微信二维码：图片存在才显示整张卡片，否则完全隐藏
+     8.5 微信二维码：卡片默认显示，只在图片确实加载失败时才收起来
+     注意别反过来写（默认隐藏 + 懒加载）——display:none 的元素没有布局盒，
+     懒加载永远不会触发，于是 load 事件不来，卡片就永远不显示了。
      ------------------------------------------------------------------ */
   var wechatCard = $('#wechatCard');
   var wechatQr = $('#wechatQr');
   if (wechatCard && wechatQr) {
-    var showWechat = function () { wechatCard.hidden = false; };
     var hideWechat = function () { wechatCard.hidden = true; };
-    if (wechatQr.complete) {
-      wechatQr.naturalWidth > 0 ? showWechat() : hideWechat();
-    } else {
-      wechatQr.addEventListener('load', showWechat);
-      wechatQr.addEventListener('error', hideWechat);
-    }
+    if (wechatQr.complete && wechatQr.naturalWidth === 0) hideWechat();
+    wechatQr.addEventListener('error', hideWechat);
   }
 
   /* ------------------------------------------------------------------

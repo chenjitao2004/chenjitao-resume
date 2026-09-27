@@ -691,10 +691,11 @@
 
         <div class="contact-side">
 
-          <!-- 微信二维码：图片不存在时由 JS 自动隐藏，不会留下空位 -->
-          <div class="card contact-wechat reveal" id="wechatCard" hidden>
+          <!-- 微信二维码：默认可见；只有图片确实加载失败时才由 onerror 隐藏 -->
+          <div class="card contact-wechat reveal" id="wechatCard">
             <img class="wechat-qr" id="wechatQr" src="assets/img/wechat-qr.png"
-                 alt="谌基涛的微信二维码" width="152" height="152" loading="lazy">
+                 alt="谌基涛的微信二维码" width="128" height="128"
+                 onerror="this.closest('.contact-wechat').hidden = true">
             <div class="wechat-meta">
               <span class="contact-k">微信</span>
               <span class="contact-v">扫码加我，沟通更快</span>

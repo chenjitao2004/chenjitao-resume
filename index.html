@@ -40,6 +40,27 @@
   })();
 </script>
 
+<!-- 无 JavaScript 时的降级方案：导航不折叠，所有内容直接可见 -->
+<noscript>
+  <style>
+    .site-header { position: static; height: auto; }
+    .nav { height: auto; flex-wrap: wrap; padding-block: 12px; row-gap: 10px; }
+
+    /* 覆盖窄屏下把菜单折叠成抽屉的规则，改回横向展开 */
+    .nav-menu { position: static; opacity: 1; visibility: visible; transform: none;
+                flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px;
+                padding: 0; background: none; border: 0; box-shadow: none; }
+    .nav-list { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px; }
+    .nav-list a { padding: 8px 12px; border-radius: 9px; font-size: .92rem; }
+    .nav-list a.is-active { background: none; }
+    .nav-list a.is-active::after { display: block; }
+
+    .nav-actions { justify-content: flex-start; }
+    .nav-actions .btn { flex: 0 1 auto; }
+    .nav-toggle { display: none; }
+  </style>
+</noscript>
+
 <!-- 结构化数据：让搜索引擎正确识别你的个人信息 -->
 <script type="application/ld+json">
 {
@@ -123,7 +144,7 @@
 
         <p class="hero-role reveal">
           <span class="role-static">方向：</span>
-          <span class="role-rotate" id="roleRotate" aria-live="polite"></span>
+          <span class="role-rotate" id="roleRotate" aria-live="polite">Java 后端开发</span>
           <span class="caret" aria-hidden="true"></span>
         </p>
 
@@ -667,13 +688,13 @@
 <!-- ========== 页脚 ========== -->
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p>© <span id="year">2025</span> 谌基涛 · 计算机科学与技术（本科·2027 届）</p>
+    <p>© <span id="year">2026</span> 谌基涛 · 计算机科学与技术（本科·2027 届）</p>
     <p class="footer-meta">
       <a href="assets/files/resume.pdf" download="谌基涛-简历.pdf">下载简历</a>
       <span aria-hidden="true">·</span>
       <a href="mailto:1499938212@qq.com">1499938212@qq.com</a>
       <span aria-hidden="true">·</span>
-      <span>本页最后更新：<time id="lastUpdated">—</time></span>
+      <span>本页最后更新：<time id="lastUpdated">2026-09-27</time></span>
     </p>
   </div>
 </footer>

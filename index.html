@@ -186,7 +186,7 @@
         </div>
 
         <dl class="hero-stats reveal">
-          <div><dt data-count="2">2</dt><dd>完整项目</dd></div>
+          <div><dt data-count="3">3</dt><dd>完整项目</dd></div>
           <div><dt data-count="3">3</dt><dd>职业证书</dd></div>
           <div><dt data-count="6">6</dt><dd>技术方向</dd></div>
           <div><dt>2027.06</dt><dd>本科毕业</dd></div>
@@ -346,9 +346,9 @@
             <h3>前端 / 移动端</h3>
           </div>
           <ul class="skill-tags">
-            <li>Vue.js</li><li>HTML / CSS</li><li>JavaScript</li><li>Android 开发</li>
+            <li>Vue.js</li><li>HTML5 / CSS3</li><li>JavaScript</li><li>响应式布局</li><li>Android 开发</li>
           </ul>
-          <p class="skill-desc">Vue.js 表格渲染与表单校验、原生 HTML/CSS/JS 页面开发、Android 端数据可视化与蓝牙通信。</p>
+          <p class="skill-desc">Vue.js 表格渲染与表单校验、原生 HTML5 / CSS3 页面开发与响应式布局、Android 端数据可视化与蓝牙通信。</p>
         </article>
 
         <article class="card skill-card reveal" data-cat="db">
@@ -396,12 +396,67 @@
       <div class="section-head reveal">
         <p class="section-kicker">Projects</p>
         <h2 class="section-title">项目经历</h2>
-        <p class="section-sub">两个从零做到跑通的完整项目：一个软件全栈，一个软硬件结合。点击卡片查看详情。</p>
+        <p class="section-sub">三个从零做到跑通的完整项目：一个已经在线、你现在就能点开看的作品，一个软件全栈，一个软硬件结合。</p>
       </div>
 
       <div class="project-grid">
 
-        <!-- 项目 1 -->
+        <!-- 项目 1：个人求职主页（本页本身） -->
+        <article class="card project-card reveal" data-cat="web">
+          <div class="project-top">
+            <span class="project-badge">前端 / 静态站点</span>
+            <time class="project-date">2026.09</time>
+          </div>
+          <h3 class="project-title">个人求职主页（已上线部署）</h3>
+          <p class="project-stack">
+            <span>HTML5</span><span>CSS3</span><span>原生 JavaScript</span><span>GitHub Pages</span>
+          </p>
+          <ul class="project-points">
+            <li>从零搭建<b>零依赖纯静态</b>个人求职站点，不引入任何前端框架与构建工具，通过 <b>Git + GitHub Pages</b> 完成线上部署，可直接访问。</li>
+            <li>采用 <b>CSS 变量 + 媒体查询</b>实现深色 / 浅色主题切换、移动端汉堡菜单与三档断点响应式布局，并适配 <b>prefers-reduced-motion</b> 与打印样式。</li>
+            <li>用原生 <b>JavaScript</b> 实现岗位方向轮播、技能分类筛选、项目详情弹窗、滚动进度条与内容渐显；弹窗支持<b>焦点锁定与 ESC 关闭</b>，可键盘完整操作。</li>
+            <li>完成 <b>SEO 与结构化数据</b>配置（描述、关键词、社交分享卡片、Person Schema），提升分享与检索时的展示效果。</li>
+          </ul>
+
+          <div class="project-actions">
+            <a class="link-btn" href="https://chenjitao2004.github.io/chenjitao-resume/" target="_blank" rel="noopener">
+              在线访问
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+            <button class="link-btn" type="button" data-modal="modal-homepage">
+              查看项目详情
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </button>
+          </div>
+
+          <div id="modal-homepage" hidden>
+            <div class="modal-meta">
+              <div><span class="k">项目周期</span><span class="v">2026.09</span></div>
+              <div><span class="k">项目类型</span><span class="v">前端 / 纯静态站点</span></div>
+              <div><span class="k">技术栈</span><span class="v">HTML5 / CSS3 / 原生 JavaScript / Git / GitHub Pages</span></div>
+              <div><span class="k">在线地址</span><span class="v"><a class="modal-link" href="https://chenjitao2004.github.io/chenjitao-resume/" target="_blank" rel="noopener">chenjitao2004.github.io/chenjitao-resume</a></span></div>
+            </div>
+            <h4>核心工作</h4>
+            <ul>
+              <li>从零搭建<b>零依赖纯静态</b>个人求职站点，不引入任何前端框架与构建工具，通过 <b>Git + GitHub Pages</b> 完成线上部署，可直接访问。</li>
+              <li>采用 <b>CSS 变量 + 媒体查询</b>实现深色 / 浅色主题切换、移动端汉堡菜单与三档断点响应式布局，并适配 <b>prefers-reduced-motion</b> 与打印样式。</li>
+              <li>用原生 <b>JavaScript</b> 实现岗位方向轮播、技能分类筛选、项目详情弹窗、滚动进度条与内容渐显；弹窗支持<b>焦点锁定与 ESC 关闭</b>，可键盘完整操作。</li>
+              <li>完成 <b>SEO 与结构化数据</b>配置（描述、关键词、社交分享卡片、Person Schema），提升分享与检索时的展示效果。</li>
+              <li>联系表单集成第三方接口异步投递，并在请求失败时<b>自动回退本地邮件客户端</b>，保障留言不丢失。</li>
+            </ul>
+            <h4>涉及能力</h4>
+            <div class="chip-row">
+              <span class="chip">响应式布局</span>
+              <span class="chip">CSS 变量与主题系统</span>
+              <span class="chip">原生 JS 交互</span>
+              <span class="chip">无障碍与键盘操作</span>
+              <span class="chip">SEO / 结构化数据</span>
+              <span class="chip">Git 版本管理与静态部署</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 项目 2 -->
         <article class="card project-card reveal" data-cat="embed">
           <div class="project-top">
             <span class="project-badge">硬件 + 固件 + 安卓端</span>

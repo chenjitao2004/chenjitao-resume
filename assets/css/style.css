@@ -1729,6 +1729,26 @@ html[data-theme="dark"] .toast { background: var(--accent); }
   animation: flow 2.4s linear infinite;
 }
 
+/* 一张项目卡里并排放两个动作（在线访问 / 查看详情） */
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+.project-actions .link-btn { margin-top: 0; padding-top: 0; }
+
+/* 弹窗里的站外链接 */
+.modal-link {
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+  overflow-wrap: anywhere;
+}
+.modal-link:hover { border-bottom-color: var(--accent); }
+
 /* --------------------------------------------------------------------------
    21. 打印：关闭玻璃与流动，回到干净的纯白纸面
    -------------------------------------------------------------------------- */

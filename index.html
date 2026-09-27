@@ -87,13 +87,15 @@
 </head>
 <body>
 
-<!-- 流动背景层：玻璃拟态的光源，纯装饰 -->
+<!-- 流动背景层：暖色光晕，纯装饰 -->
 <div class="flow-bg" aria-hidden="true">
   <span class="blob b1"></span>
   <span class="blob b2"></span>
   <span class="blob b3"></span>
-  <span class="blob b4"></span>
 </div>
+
+<!-- 跟随鼠标的暖光，桌面端才启用 -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
 <a class="skip-link" href="#about">跳转到主要内容</a>
 
@@ -148,7 +150,7 @@
           <span class="dot" aria-hidden="true"></span> 求职中 · 2027 届本科毕业生
         </p>
 
-        <h1 class="hero-name reveal">谌基涛</h1>
+        <h1 class="hero-name" id="heroName">谌基涛</h1>
 
         <p class="hero-role reveal">
           <span class="role-static">方向：</span>
@@ -184,9 +186,9 @@
         </div>
 
         <dl class="hero-stats reveal">
-          <div><dt>2</dt><dd>完整项目</dd></div>
-          <div><dt>3</dt><dd>职业证书</dd></div>
-          <div><dt>6</dt><dd>技术方向</dd></div>
+          <div><dt data-count="2">2</dt><dd>完整项目</dd></div>
+          <div><dt data-count="3">3</dt><dd>职业证书</dd></div>
+          <div><dt data-count="6">6</dt><dd>技术方向</dd></div>
           <div><dt>2027.06</dt><dd>本科毕业</dd></div>
         </dl>
       </div>
@@ -207,6 +209,28 @@
       <span aria-hidden="true"></span>
     </a>
   </section>
+
+  <!-- ========== 技术关键词跑马灯 ========== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <span class="marquee-item">Java</span>
+      <span class="marquee-item">Spring Boot</span>
+      <span class="marquee-item">Python</span>
+      <span class="marquee-item">Flask</span>
+      <span class="marquee-item">Vue.js</span>
+      <span class="marquee-item">MySQL</span>
+      <span class="marquee-item">RESTful API</span>
+      <span class="marquee-item">STM32</span>
+      <span class="marquee-item">嵌入式 C</span>
+      <span class="marquee-item">Android</span>
+      <span class="marquee-item">Proteus</span>
+      <span class="marquee-item">PCB 焊接调试</span>
+      <span class="marquee-item">Git</span>
+      <span class="marquee-item">Linux</span>
+      <span class="marquee-item">蓝牙通信</span>
+      <span class="marquee-item">AI 辅助开发</span>
+    </div>
+  </div>
 
   <!-- ========== 关于我 ========== -->
   <section class="section" id="about">

@@ -177,10 +177,9 @@
   }
 
   if (!reduceMotion && 'IntersectionObserver' in window) {
-    // 首屏元素立即显示，避免进入页面时先白一下
+    // 首屏元素立即显示，避免进入页面时先白一下；顺序错开，动效更有节奏
     revealItems.forEach(function (el, index) {
-      // 同一屏内的元素错开一点，动效更自然
-      el.style.transitionDelay = Math.min(index % 4, 3) * 70 + 'ms';
+      el.style.transitionDelay = Math.min(index % 5, 4) * 80 + 'ms';
       if (isInViewport(el, -40)) el.classList.add('is-visible');
     });
 
@@ -209,6 +208,130 @@
     }, 1200);
   } else {
     revealAll();
+  }
+
+  /* ------------------------------------------------------------------
+     3.5 动效增强：逐字标题 / 入场变体 / 数字滚动 / 光标暖光 / 卡片倾斜
+     全部只用 transform 与 opacity，保持合成层友好，不给滚动添负担
+     ------------------------------------------------------------------ */
+
+  /* 3.5.1 姓名逐字上浮（动画由 CSS 触发，这里只负责拆分字符） */
+  var heroName = $('#heroName');
+  if (heroName) {
+    var nameText = heroName.textContent.trim();
+    if (!reduceMotion) {
+      heroName.textContent = '';
+      nameText.split('').forEach(function (ch, i) {
+        var span = document.createElement('span');
+        span.className = 'ch';
+        span.style.setProperty('--i', i);
+        span.textContent = ch;
+        heroName.appendChild(span);
+      });
+    }
+    // 屏幕阅读器读到的是完整姓名，而不是逐字
+    heroName.setAttribute('aria-label', nameText);
+  }
+
+  /* 3.5.2 给栅格内的元素自动分配入场方向 */
+  ['.about-grid', '.skill-grid', '.project-grid', '.cert-grid', '.eval-grid'].forEach(function (sel) {
+    var grid = $(sel);
+    if (!grid) return;
+    $$('.reveal', grid).forEach(function (el, i) {
+      if (el.hasAttribute('data-anim')) return;
+      el.setAttribute('data-anim', i % 3 === 0 ? 'left' : (i % 3 === 1 ? 'scale' : 'right'));
+    });
+  });
+
+  /* 3.5.3 首屏数字滚动 */
+  var counters = $$('[data-count]');
+  if (counters.length && !reduceMotion && 'IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        countObserver.unobserve(el);
+        var target = parseInt(el.dataset.count, 10);
+        if (isNaN(target)) return;
+        var start = null, dur = 1100;
+        (function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          // easeOutExpo，收尾更利落
+          var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+          el.textContent = String(Math.round(target * eased));
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = String(target);
+        })(performance.now());
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { countObserver.observe(el); });
+  }
+
+  /* 3.5.4 跑马灯：内容复制一份，实现无缝循环 */
+  var marqueeTrack = $('#marqueeTrack');
+  if (marqueeTrack) {
+    marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+  }
+
+  /* 3.5.5 跟随鼠标的暖光（仅精确指针设备） */
+  var glow = $('#cursorGlow');
+  var finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (glow && finePointer && !reduceMotion) {
+    var gx = 0, gy = 0, cx = 0, cy = 0, glowOn = false, glowRaf = 0;
+
+    function glowLoop() {
+      // 缓动跟随，比硬跟随更有质感
+      cx += (gx - cx) * 0.12;
+      cy += (gy - cy) * 0.12;
+      glow.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)';
+      if (Math.abs(gx - cx) > 0.5 || Math.abs(gy - cy) > 0.5) {
+        glowRaf = requestAnimationFrame(glowLoop);
+      } else {
+        glowRaf = 0;
+      }
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      gx = e.clientX; gy = e.clientY;
+      if (!glowOn) { cx = gx; cy = gy; glowOn = true; glow.classList.add('is-on'); }
+      if (!glowRaf) glowRaf = requestAnimationFrame(glowLoop);
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () {
+      glow.classList.remove('is-on');
+      glowOn = false;
+    });
+  }
+
+  /* 3.5.6 项目卡轻微 3D 倾斜 */
+  if (finePointer && !reduceMotion) {
+    $$('.project-card').forEach(function (card) {
+      var raf = 0, rx = 0, ry = 0;
+
+      function apply() {
+        card.style.transform =
+          'perspective(1000px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) +
+          'deg) translateY(-4px)';
+        raf = 0;
+      }
+
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        ry = px * 6;
+        rx = -py * 6;
+        card.classList.add('is-tilting');
+        if (!raf) raf = requestAnimationFrame(apply);
+      }, { passive: true });
+
+      card.addEventListener('mouseleave', function () {
+        card.classList.remove('is-tilting');
+        card.style.transform = '';
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      });
+    });
   }
 
   /* ------------------------------------------------------------------

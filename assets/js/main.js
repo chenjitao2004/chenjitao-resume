@@ -59,7 +59,7 @@
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
     if (themeColorMeta) {
-      themeColorMeta.setAttribute('content', theme === 'dark' ? '#070d18' : '#14314f');
+      themeColorMeta.setAttribute('content', theme === 'dark' ? '#0a0611' : '#3b0764');
     }
     if (themeToggle) {
       var isDark = theme === 'dark';

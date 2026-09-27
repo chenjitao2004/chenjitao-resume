@@ -8,42 +8,44 @@
    -------------------------------------------------------------------------- */
 :root {
   /* ---- 玻璃面 ---- */
-  --surface:       rgba(255, 255, 255, .60);
-  --surface-2:     rgba(255, 255, 255, .44);
-  --bg:            #e9f1fd;
-  --bg-alt:        rgba(255, 255, 255, .30);
-  --glass-edge:    rgba(255, 255, 255, .72);   /* 玻璃高光边 */
-  --glass-sheen:   rgba(255, 255, 255, .55);   /* 玻璃斜向反光 */
-  --glass-nav:     rgba(255, 255, 255, .58);
-  --glass-chip:    rgba(255, 255, 255, .50);
-  --glass-blur:    20px;
+  --surface:       rgba(255, 255, 255, .64);
+  --surface-2:     rgba(255, 255, 255, .48);
+  --bg:            #f7f2fb;
+  --bg-alt:        rgba(255, 255, 255, .34);
+  --glass-edge:    rgba(255, 255, 255, .78);   /* 玻璃高光边 */
+  --glass-sheen:   rgba(255, 255, 255, .62);   /* 玻璃斜向反光 */
+  --glass-nav:     rgba(250, 245, 255, .78);
+  --glass-chip:    rgba(255, 255, 255, .56);
+  --glass-blur:    16px;
   --glass-blur-sm: 10px;
-  --glass-shadow:  0 10px 34px -14px rgba(15, 23, 42, .30),
-                   inset 0 1px 0 rgba(255, 255, 255, .85);
+  --glass-shadow:  0 10px 34px -16px rgba(59, 20, 92, .30),
+                   inset 0 1px 0 rgba(255, 255, 255, .90);
 
   /* ---- 文字与线条 ---- */
-  --text:          #0f172a;
-  --text-2:        #3d4d66;
-  --muted:         #62748d;
-  --border:        rgba(15, 23, 42, .10);
-  --border-strong: rgba(15, 23, 42, .16);
-  --heading:       #14314f;
-  --accent:        #2563eb;
-  --accent-soft:   rgba(37, 99, 235, .10);
-  --accent-2:      #0ea5e9;
-  --ring:          rgba(37, 99, 235, .32);
+  --text:          #1c1428;
+  --text-2:        #4b3f5e;
+  --muted:         #786a8d;
+  --border:        rgba(59, 7, 100, .12);
+  --border-strong: rgba(59, 7, 100, .19);
+  --heading:       #3b0764;   /* 深紫 */
+  --accent:        #7c3aed;   /* 紫罗兰 */
+  --accent-soft:   rgba(124, 58, 237, .10);
+  --accent-2:      #db2777;   /* 玫红 */
+  --accent-3:      #f59e0b;   /* 暖橙，用于点缀 */
+  --ring:          rgba(124, 58, 237, .34);
 
-  --shadow-sm:     0 2px 10px -6px rgba(15, 23, 42, .30);
-  --shadow:        0 18px 40px -20px rgba(15, 23, 42, .38);
-  --shadow-lg:     0 30px 70px -30px rgba(15, 23, 42, .50);
+  --shadow-sm:     0 2px 10px -6px rgba(59, 20, 92, .30);
+  --shadow:        0 18px 40px -20px rgba(59, 20, 92, .38);
+  --shadow-lg:     0 30px 70px -30px rgba(59, 20, 92, .52);
 
-  /* ---- 流动背景的光斑 ---- */
-  --blob-1: rgba(59, 130, 246, .40);
-  --blob-2: rgba(56, 189, 248, .34);
-  --blob-3: rgba(139, 92, 246, .30);
-  --blob-4: rgba(20, 184, 166, .26);
-  --blob-opacity: .75;
-  --flow-sweep: rgba(255, 255, 255, .34);
+  /* ---- 流动背景的光斑（用径向渐变代替 filter:blur，性能好很多） ---- */
+  --blob-1: rgba(139, 92, 246, .50);
+  --blob-2: rgba(236, 72, 153, .38);
+  --blob-3: rgba(251, 146, 60, .34);
+  --blob-4: rgba(45, 212, 191, .26);
+
+  /* 卡片里的磨砂颗粒 */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
 
   --radius:   16px;
   --radius-sm: 10px;
@@ -55,38 +57,37 @@
 }
 
 html[data-theme="dark"] {
-  --surface:       rgba(21, 34, 57, .55);
-  --surface-2:     rgba(255, 255, 255, .05);
-  --bg:            #050a13;
+  --surface:       rgba(38, 26, 58, .62);
+  --surface-2:     rgba(255, 255, 255, .055);
+  --bg:            #0a0611;
   --bg-alt:        rgba(255, 255, 255, .03);
-  --glass-edge:    rgba(255, 255, 255, .13);
-  --glass-sheen:   rgba(255, 255, 255, .10);
-  --glass-nav:     rgba(8, 15, 28, .62);
-  --glass-chip:    rgba(255, 255, 255, .06);
-  --glass-shadow:  0 12px 36px -16px rgba(0, 0, 0, .85),
-                   inset 0 1px 0 rgba(255, 255, 255, .07);
+  --glass-edge:    rgba(255, 255, 255, .14);
+  --glass-sheen:   rgba(255, 255, 255, .11);
+  --glass-nav:     rgba(13, 8, 22, .74);
+  --glass-chip:    rgba(255, 255, 255, .065);
+  --glass-shadow:  0 12px 36px -16px rgba(0, 0, 0, .88),
+                   inset 0 1px 0 rgba(255, 255, 255, .08);
 
-  --text:          #e6edf7;
-  --text-2:        #aab9cf;
-  --muted:         #8698b3;
+  --text:          #ece5f7;
+  --text-2:        #baaecd;
+  --muted:         #8d81a4;
   --border:        rgba(255, 255, 255, .10);
   --border-strong: rgba(255, 255, 255, .16);
-  --heading:       #e8f0fb;
-  --accent:        #5b93f8;
-  --accent-soft:   rgba(91, 147, 248, .14);
-  --accent-2:      #38bdf8;
-  --ring:          rgba(91, 147, 248, .38);
+  --heading:       #f7f1ff;
+  --accent:        #a78bfa;
+  --accent-soft:   rgba(167, 139, 250, .16);
+  --accent-2:      #f472b6;
+  --accent-3:      #fbbf24;
+  --ring:          rgba(167, 139, 250, .40);
 
-  --shadow-sm:     0 2px 10px -6px rgba(0, 0, 0, .70);
-  --shadow:        0 18px 44px -22px rgba(0, 0, 0, .90);
-  --shadow-lg:     0 30px 72px -30px rgba(0, 0, 0, .95);
+  --shadow-sm:     0 2px 10px -6px rgba(0, 0, 0, .72);
+  --shadow:        0 18px 44px -22px rgba(0, 0, 0, .92);
+  --shadow-lg:     0 30px 72px -30px rgba(0, 0, 0, .96);
 
-  --blob-1: rgba(59, 130, 246, .42);
-  --blob-2: rgba(56, 189, 248, .34);
-  --blob-3: rgba(139, 92, 246, .36);
-  --blob-4: rgba(20, 184, 166, .26);
-  --blob-opacity: .70;
-  --flow-sweep: rgba(255, 255, 255, .09);
+  --blob-1: rgba(139, 92, 246, .55);
+  --blob-2: rgba(236, 72, 153, .42);
+  --blob-3: rgba(251, 146, 60, .30);
+  --blob-4: rgba(45, 212, 191, .24);
 }
 
 /* --------------------------------------------------------------------------
@@ -113,76 +114,58 @@ body {
   overflow-x: hidden;
 }
 
-/* ---- 流动背景：四团缓慢漂移的光斑 + 一道扫光 ---- */
+/* --------------------------------------------------------------------------
+   流动背景
+   性能要点：光斑一律用 radial-gradient 画，不用 filter:blur
+   —— 滤镜模糊的大图每帧都要重新栅格化，是页面卡顿的头号原因。
+   径向渐变只栅格化一次，之后纯 GPU 位移，开销接近于零。
+   -------------------------------------------------------------------------- */
 .flow-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+  contain: strict;            /* 与页面其余部分隔离，避免重排扩散 */
 }
 
 .flow-bg .blob {
   position: absolute;
   display: block;
   border-radius: 50%;
-  opacity: var(--blob-opacity);
-  filter: blur(86px);
   will-change: transform;
 }
 
-/* 光斑尽量压到四角，让内容区留出呼吸空间 */
+/* 光斑压到四角，内容区留出呼吸空间 */
 .flow-bg .b1 {
-  width: 34vmax; height: 34vmax;
-  top: -18vmax; left: -13vmax;
-  background: var(--blob-1);
-  animation: drift-a 24s ease-in-out infinite;
+  width: 62vmax; height: 62vmax;
+  top: -30vmax; left: -22vmax;
+  background: radial-gradient(closest-side, var(--blob-1), transparent 100%);
+  animation: drift-a 26s ease-in-out infinite;
 }
 .flow-bg .b2 {
-  width: 30vmax; height: 30vmax;
-  top: -14vmax; right: -15vmax;
-  background: var(--blob-2);
-  animation: drift-b 30s ease-in-out infinite;
+  width: 54vmax; height: 54vmax;
+  top: -24vmax; right: -24vmax;
+  background: radial-gradient(closest-side, var(--blob-2), transparent 100%);
+  animation: drift-b 32s ease-in-out infinite;
 }
 .flow-bg .b3 {
-  width: 33vmax; height: 33vmax;
-  bottom: -20vmax; left: -8vmax;
-  background: var(--blob-3);
-  animation: drift-c 36s ease-in-out infinite;
+  width: 58vmax; height: 58vmax;
+  bottom: -32vmax; left: -16vmax;
+  background: radial-gradient(closest-side, var(--blob-3), transparent 100%);
+  animation: drift-c 38s ease-in-out infinite;
 }
 .flow-bg .b4 {
-  width: 27vmax; height: 27vmax;
-  bottom: -16vmax; right: -6vmax;
-  background: var(--blob-4);
-  animation: drift-d 27s ease-in-out infinite;
-}
-
-/* 斜向扫光，制造“流动”的方向感 */
-.flow-bg::after {
-  content: "";
-  position: absolute;
-  inset: -60%;
-  background: linear-gradient(105deg,
-              transparent 38%,
-              var(--flow-sweep) 50%,
-              transparent 62%);
-  animation: sweep 22s linear infinite;
-}
-
-/* 细微噪点，让玻璃面有磨砂质感 */
-.flow-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: .5;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  width: 48vmax; height: 48vmax;
+  bottom: -26vmax; right: -12vmax;
+  background: radial-gradient(closest-side, var(--blob-4), transparent 100%);
+  animation: drift-d 30s ease-in-out infinite;
 }
 
 @keyframes drift-a {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  33%      { transform: translate3d(8vmax, 6vmax, 0) scale(1.14); }
-  66%      { transform: translate3d(-5vmax, 11vmax, 0) scale(.94); }
+  33%      { transform: translate3d(7vmax, 5vmax, 0) scale(1.12); }
+  66%      { transform: translate3d(-4vmax, 9vmax, 0) scale(.95); }
 }
 @keyframes drift-b {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -198,10 +181,6 @@ body {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
   45%      { transform: translate3d(-9vmax, -9vmax, 0) scale(1.16); }
   75%      { transform: translate3d(5vmax, 4vmax, 0) scale(.9); }
-}
-@keyframes sweep {
-  0%   { transform: translate3d(-32%, -32%, 0); }
-  100% { transform: translate3d(32%, 32%, 0); }
 }
 /* 渐变「流动」通用动画：配合 background-size: 200% 使用 */
 @keyframes flow {
@@ -265,16 +244,21 @@ time { font-style: normal; }
   padding-inline: 24px;
 }
 
+/* 卡片：半透明玻璃面 + 磨砂颗粒 + 高光斜边
+   注意：这里刻意不用 backdrop-filter —— 背景在缓慢流动，
+   几十个卡片如果每帧都重新做一次背景模糊，必然卡顿。
+   半透明 + 颗粒 + 高光边已经能给出玻璃观感，且开销几乎为零。 */
 .card {
   position: relative;
-  background:
-    linear-gradient(145deg, var(--glass-sheen), transparent 46%),
-    var(--surface);
+  background-color: var(--surface);
+  background-image:
+    var(--noise),
+    linear-gradient(145deg, var(--glass-sheen), transparent 46%);
+  background-repeat: repeat, no-repeat;
+  background-size: 120px 120px, auto;
   border: 1px solid var(--glass-edge);
   border-radius: var(--radius);
   box-shadow: var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 
@@ -319,8 +303,6 @@ time { font-style: normal; }
   background: var(--glass-chip);
   border-color: var(--glass-edge);
   color: var(--text);
-  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(160%);
-  backdrop-filter: blur(var(--glass-blur-sm)) saturate(160%);
 }
 .btn-ghost:hover {
   border-color: var(--accent);
@@ -599,8 +581,6 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
   font-size: .85rem;
   font-weight: 500;
   box-shadow: var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
-  backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
 }
 .hero-hello .dot {
   width: 8px; height: 8px;
@@ -689,7 +669,8 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
 }
 .hero-stats dd { margin: 2px 0 0; font-size: .84rem; color: var(--muted); }
 
-/* 头像：玻璃边框 + 呼吸光晕 */
+/* 头像：玻璃边框 + 呼吸光晕
+   光晕改为「透明度 + 缩放」动画（纯合成层），不再动 box-shadow */
 .hero-photo { position: relative; justify-self: center; }
 .photo-frame {
   position: relative;
@@ -699,21 +680,24 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
   overflow: hidden;
   border: 1px solid var(--glass-edge);
   background: var(--surface);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--glass-edge);
   transform: rotate(2deg);
   transition: transform .45s cubic-bezier(.2, .8, .2, 1);
-  animation: halo 7s ease-in-out infinite;
+}
+
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: -16% -20%;
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(closest-side, var(--accent), transparent 72%);
+  animation: halo 8s ease-in-out infinite;
 }
 @keyframes halo {
-  0%, 100% {
-    box-shadow: var(--shadow-lg),
-                0 0 0 1px var(--glass-edge),
-                0 0 46px -14px var(--accent);
-  }
-  50% {
-    box-shadow: var(--shadow-lg),
-                0 0 0 1px var(--glass-edge),
-                0 0 78px -8px var(--accent-2);
-  }
+  0%, 100% { opacity: .26; transform: scale(.92); }
+  50%      { opacity: .52; transform: scale(1.06); }
 }
 .photo-frame::after {
   content: "";
@@ -1331,7 +1315,6 @@ html[data-theme="dark"] .toast { background: var(--accent); }
   opacity: 0;
   transform: translateY(22px);
   transition: opacity .7s cubic-bezier(.2, .8, .2, 1), transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: opacity, transform;
 }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
@@ -1419,9 +1402,11 @@ html[data-theme="dark"] .toast { background: var(--accent); }
     --muted: #555;
     --border: #d5dbe5;
     --border-strong: #c3ccda;
-    --heading: #14314f;
-    --accent: #1d4ed8;
-    --accent-soft: #eef3fd;
+    --heading: #3b0764;
+    --accent: #6d28d9;
+    --accent-2: #be185d;
+    --accent-soft: #f5f0fd;
+    --noise: none;
     --shadow: none;
     --shadow-sm: none;
     --shadow-lg: none;
@@ -1441,7 +1426,7 @@ html[data-theme="dark"] .toast { background: var(--accent); }
   .hero-photo { order: 0; }
   .photo-frame { width: 120pt; transform: none; box-shadow: none; }
   .hero-photo::before, .photo-badge { display: none; }
-  .hero-name { font-size: 26pt; -webkit-text-fill-color: #14314f; color: #14314f; }
+  .hero-name { font-size: 26pt; -webkit-text-fill-color: #3b0764; color: #3b0764; }
   .hero-desc { font-size: 10.5pt; }
   .hero-stats { grid-template-columns: repeat(4, 1fr); margin-top: 14pt; padding-top: 12pt; }
 
@@ -1485,21 +1470,12 @@ html[data-theme="dark"] .toast { background: var(--accent); }
 }
 
 /* --------------------------------------------------------------------------
-   19. 玻璃拟态细节：小元件与主体保持统一的磨砂质感
+   19. 玻璃拟态细节：小元件与主体保持统一的质感
+   --------------------------------------------------------------------------
+   性能约定：backdrop-filter 只留给 3 处「大面积但数量少」的表面
+   （顶栏、弹窗、移动端抽屉）。其余几十个小元件一律用
+   半透明填充 + 高光内边来表现玻璃感，避免每帧重复做背景模糊。
    -------------------------------------------------------------------------- */
-.icon-btn,
-.nav-toggle,
-.to-top,
-.filter-btn,
-.photo-badge,
-.hero-tags li,
-.skill-tags li,
-.project-stack span,
-.field input,
-.field textarea {
-  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
-  backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
-}
 
 .hero-tags li,
 .skill-tags li,
@@ -1577,8 +1553,8 @@ html[data-theme="dark"] .toast { background: var(--accent); }
 
   .hero-name {
     background: none !important;
-    -webkit-text-fill-color: #14314f !important;
-    color: #14314f !important;
+    -webkit-text-fill-color: #3b0764 !important;
+    color: #3b0764 !important;
   }
   .hero-name, .btn-primary, .section-title::after, .progress-bar > span,
   .project-card::before, .photo-frame,

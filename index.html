@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#14314f">
+
+<title>谌基涛 | 计算机科学与技术 · 软件开发求职主页</title>
+<meta name="description" content="谌基涛的个人求职主页 —— 计算机科学与技术本科（2027 届），掌握 Java / Spring Boot / Python / Flask / Vue.js 与 STM32 嵌入式开发，具备 Web 全栈与软硬件协同项目经验。">
+<meta name="keywords" content="谌基涛,个人主页,求职简历,Java,Spring Boot,Python,Flask,Vue.js,STM32,嵌入式,重庆">
+<meta name="author" content="谌基涛">
+<meta name="robots" content="index,follow">
+
+<!-- 社交平台分享卡片：部署后请把 og:url / og:image 换成你的真实域名 -->
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="谌基涛 | 计算机科学与技术 · 软件开发求职主页">
+<meta property="og:description" content="计算机科学与技术本科（2027 届）· Java 后端 / Web 全栈 / 嵌入式开发 · 2 个完整项目 · 3 项职业证书">
+<meta property="og:image" content="assets/img/photo.jpg">
+<meta property="og:url" content="https://chenjitao2004.github.io/chenjitao-resume/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="谌基涛 | 软件开发求职主页">
+<meta name="twitter:description" content="计算机科学与技术本科（2027 届）· Java 后端 / Web 全栈 / 嵌入式开发">
+<meta name="twitter:image" content="assets/img/photo.jpg">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/photo.jpg">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- 提前应用主题，避免页面刷新时闪白；同时标记 JS 可用 -->
+<script>
+  (function () {
+    var root = document.documentElement;
+    root.classList.add('js');
+    try {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', saved === 'dark' || saved === 'light' ? saved : (prefersDark ? 'dark' : 'light'));
+    } catch (e) { /* 隐私模式下忽略 */ }
+  })();
+</script>
+
+<!-- 结构化数据：让搜索引擎正确识别你的个人信息 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "谌基涛",
+  "gender": "Male",
+  "email": "mailto:1499938212@qq.com",
+  "telephone": "+86-185-8465-9595",
+  "jobTitle": "软件开发工程师（求职中）",
+  "address": { "@type": "PostalAddress", "addressLocality": "重庆市", "addressCountry": "CN" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "重庆外语外事学院" },
+    { "@type": "CollegeOrUniversity", "name": "重庆工业职业技术大学" }
+  ],
+  "knowsAbout": ["Java","Spring Boot","Python","Flask","Vue.js","MySQL","STM32","Android","Linux"],
+  "hasCredential": [
+    "JavaWeb 应用开发（中级）",
+    "工业互联网实施与运维（中级）",
+    "物联网技术工程师"
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#about">跳转到主要内容</a>
+
+<!-- ========== 导航栏 ========== -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav container" aria-label="主导航">
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true">谌</span>
+      <span class="brand-text">谌基涛<em> · 求职主页</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="打开导航菜单">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-list">
+        <li><a href="#about">关于我</a></li>
+        <li><a href="#skills">专业技能</a></li>
+        <li><a href="#projects">项目经历</a></li>
+        <li><a href="#education">教育经历</a></li>
+        <li><a href="#certificates">证书荣誉</a></li>
+        <li><a href="#contact">联系我</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="切换深色模式" title="切换深色 / 浅色模式">
+          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+        </button>
+        <a class="btn btn-primary btn-sm" href="assets/files/resume.pdf" download="谌基涛-简历.pdf">
+          <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+          下载简历
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 阅读进度条 -->
+  <div class="progress-bar" id="progressBar" role="presentation"><span></span></div>
+</header>
+
+<main id="main">
+
+  <!-- ========== 首屏 ========== -->
+  <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+
+      <div class="hero-text">
+        <p class="hero-hello reveal">
+          <span class="dot" aria-hidden="true"></span> 求职中 · 2027 届本科毕业生
+        </p>
+
+        <h1 class="hero-name reveal">谌基涛</h1>
+
+        <p class="hero-role reveal">
+          <span class="role-static">方向：</span>
+          <span class="role-rotate" id="roleRotate" aria-live="polite"></span>
+          <span class="caret" aria-hidden="true"></span>
+        </p>
+
+        <p class="hero-desc reveal">
+          计算机科学与技术本科在读，工业互联网技术专科出身，具备
+          <b>Web 全栈开发</b> 与 <b>嵌入式软硬件协同</b> 双重实践经历。
+          在完整项目中独立完成数据库设计、接口开发与权限控制，
+          也能打通「硬件采集 → 蓝牙通信 → 移动端可视化」的完整链路。
+        </p>
+
+        <ul class="hero-tags reveal">
+          <li>Java</li><li>Spring Boot</li><li>Python / Flask</li>
+          <li>Vue.js</li><li>MySQL</li><li>STM32</li><li>Android</li>
+        </ul>
+
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" href="#contact">
+            <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+            联系我
+          </a>
+          <a class="btn btn-ghost" href="assets/files/resume.pdf" download="谌基涛-简历.pdf">
+            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+            下载 PDF 简历
+          </a>
+          <button class="btn btn-ghost" id="printPage" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-print"></use></svg>
+            打印本页
+          </button>
+        </div>
+
+        <dl class="hero-stats reveal">
+          <div><dt>2</dt><dd>完整项目</dd></div>
+          <div><dt>3</dt><dd>职业证书</dd></div>
+          <div><dt>6</dt><dd>技术方向</dd></div>
+          <div><dt>2027.06</dt><dd>本科毕业</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-photo reveal">
+        <div class="photo-frame">
+          <img src="assets/img/photo.jpg" width="396" height="527" alt="谌基涛的证件照" fetchpriority="high">
+        </div>
+        <div class="photo-badge">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+          重庆 · 可到岗实习
+        </div>
+      </div>
+
+    </div>
+
+    <a class="scroll-hint" href="#about" aria-label="向下滚动查看详情">
+      <span aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- ========== 关于我 ========== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">About Me</p>
+        <h2 class="section-title">关于我</h2>
+        <p class="section-sub">一名把「软件」和「硬件」都动手做过的在校开发者，正在寻找 2027 届校招 / 实习机会。</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card about-card reveal">
+          <h3 class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>
+            个人信息
+          </h3>
+          <ul class="info-list">
+            <li><span class="k">姓名</span><span class="v">谌基涛</span></li>
+            <li><span class="k">性别 / 年龄</span><span class="v">男 / 21 岁</span></li>
+            <li><span class="k">当前学历</span><span class="v">本科在读（统招专升本）</span></li>
+            <li><span class="k">毕业时间</span><span class="v">2027 年 6 月</span></li>
+            <li><span class="k">所在城市</span><span class="v">重庆市</span></li>
+            <li><span class="k">其他</span><span class="v">持有 C1 驾驶证</span></li>
+          </ul>
+        </div>
+
+        <div class="card about-card reveal">
+          <h3 class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg>
+            求职意向
+          </h3>
+          <!-- 求职意向可自行修改：改这里即可 -->
+          <ul class="info-list">
+            <li><span class="k">目标岗位</span><span class="v">软件开发工程师（Java 后端 / Web 全栈 / 嵌入式方向）</span></li>
+            <li><span class="k">期望城市</span><span class="v">重庆，可接受外地机会</span></li>
+            <li><span class="k">到岗时间</span><span class="v">可协商，支持实习转正</span></li>
+            <li><span class="k">简历状态</span><span class="v"><span class="badge-live">正在找工作</span></span></li>
+          </ul>
+          <div class="about-note">
+            如果你在找一名基础扎实、愿意从真实项目里成长的应届开发者，欢迎直接联系我。
+          </div>
+        </div>
+
+        <div class="card about-card about-card-wide reveal">
+          <h3 class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+            一句话概括
+          </h3>
+          <p class="about-summary">
+            工业互联网（专科）+ 计算机科学与技术（本科）双学科背景；
+            既能在 <b>Flask / Vue.js</b> 全栈项目里做数据库设计、RESTful 接口与角色权限，
+            也能在 <b>STM32 + 安卓 App</b> 的硬件项目里做固件开发、PCB 焊接调试与蓝牙联调。
+            习惯用 Git 管理版本、按模块组织代码，并熟练借助 AI 编程工具提升开发与排错效率。
+          </p>
+          <div class="chip-row">
+            <span class="chip">软硬件协同</span>
+            <span class="chip">全栈实践</span>
+            <span class="chip">独立排错</span>
+            <span class="chip">团队协作</span>
+            <span class="chip">AI 工具提效</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 专业技能 ========== -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">Skills</p>
+        <h2 class="section-title">专业技能</h2>
+        <p class="section-sub">按方向梳理的技术栈。点击分类可以筛选查看。</p>
+      </div>
+
+      <div class="filter-bar reveal" id="skillFilter" role="tablist" aria-label="技能分类筛选">
+        <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">全部</button>
+        <button class="filter-btn" data-filter="lang" role="tab" aria-selected="false">编程语言</button>
+        <button class="filter-btn" data-filter="backend" role="tab" aria-selected="false">后端框架</button>
+        <button class="filter-btn" data-filter="frontend" role="tab" aria-selected="false">前端 / 移动端</button>
+        <button class="filter-btn" data-filter="db" role="tab" aria-selected="false">数据库 / 工具</button>
+        <button class="filter-btn" data-filter="embed" role="tab" aria-selected="false">嵌入式开发</button>
+        <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI 工具</button>
+      </div>
+
+      <div class="skill-grid" id="skillGrid">
+
+        <article class="card skill-card reveal" data-cat="lang">
+          <div class="skill-head">
+            <span class="skill-ico" aria-hidden="true"><svg class="icon"><use href="#i-code"></use></svg></span>
+            <h3>编程语言</h3>
+          </div>
+          <ul class="skill-tags">
+            <li>Java</li><li>Python</li><li>C</li><li>SQL</li>
+          </ul>
+          <p class="skill-desc">Java 面向对象与集合、Python 脚本与 Web 开发、C 语言嵌入式编程、SQL 增删改查与联表查询。</p>
+        </article>
+
+        <article class="card skill-card reveal" data-cat="backend">
+          <div class="skill-head">
+            <span class="skill-ico" aria-hidden="true"><svg class="icon"><use href="#i-server"></use></svg></span>
+            <h3>后端框架</h3>
+          </div>
+          <ul class="skill-tags">
+            <li>Spring Boot</li><li>Flask</li>
+          </ul>
+          <p class="skill-desc">Flask 蓝图分模块组织路由与视图、RESTful 接口设计、登录注册与哈希加盐存密、角色权限控制。</p>
+        </article>
+
+        <article class="card skill-card reveal" data-cat="frontend">
+          <div class="skill-head">
+            <span class="skill-ico" aria-hidden="true"><svg class="icon"><use href="#i-layout"></use></svg></span>
+            <h3>前端 / 移动端</h3>
+          </div>
+          <ul class="skill-tags">
+            <li>Vue.js</li><li>HTML / CSS</li><li>JavaScript</li><li>Android 开发</li>
+          </ul>
+          <p class="skill-desc">Vue.js 表格渲染与表单校验、原生 HTML/CSS/JS 页面开发、Android 端数据可视化与蓝牙通信。</p>
+        </article>
+
+        <article class="card skill-card reveal" data-cat="db">
+          <div class="skill-head">
+            <span class="skill-ico" aria-hidden="true"><svg class="icon"><use href="#i-database"></use></svg></span>
+            <h3>数据库 / 工具</h3>
+          </div>
+          <ul class="skill-tags">
+            <li>MySQL</li><li>Git</li><li>Maven</li><li>Linux</li>
+          </ul>
+          <p class="skill-desc">数据库结构设计与联合索引优化、事务与乐观锁并发控制；Git 版本管理、Maven 构建、Linux 常用命令。</p>
+        </article>
+
+        <article class="card skill-card reveal" data-cat="embed">
+          <div class="skill-head">
+            <span class="skill-ico" aria-hidden="true"><svg class="icon"><use href="#i-chip"></use></svg></span>
+            <h3>嵌入式开发</h3>
+          </div>
+          <ul class="skill-tags">
+            <li>STM32</li><li>PCB 焊接调试</li><li>Proteus 仿真</li><li>蓝牙通信</li>
+          </ul>
+          <p class="skill-desc">STM32F103 固件开发（GPIO / ADC / 定时器 / I2C / UART）、Proteus 虚拟仿真验证、PCB 手工焊接与整机调试。</p>
+        </article>
+
+        <article class="card skill-card reveal" data-cat="ai">
+          <div class="skill-head">
+            <span class="skill-ico" aria-hidden="true"><svg class="icon"><use href="#i-spark"></use></svg></span>
+            <h3>AI 工具</h3>
+          </div>
+          <ul class="skill-tags">
+            <li>Claude Code</li><li>Cursor</li><li>DeepSeek</li><li>GitHub Copilot</li>
+          </ul>
+          <p class="skill-desc">借助 AI Agent 完成代码生成、报错定位与技术方案调研，显著提升开发与学习效率。</p>
+        </article>
+
+      </div>
+
+      <p class="empty-tip" id="skillEmpty" hidden>该分类下暂无内容。</p>
+    </div>
+  </section>
+
+  <!-- ========== 项目经历 ========== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">Projects</p>
+        <h2 class="section-title">项目经历</h2>
+        <p class="section-sub">两个从零做到跑通的完整项目：一个软件全栈，一个软硬件结合。点击卡片查看详情。</p>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- 项目 1 -->
+        <article class="card project-card reveal" data-cat="embed">
+          <div class="project-top">
+            <span class="project-badge">硬件 + 固件 + 安卓端</span>
+            <time class="project-date">2026.01 — 2026.06</time>
+          </div>
+          <h3 class="project-title">STM32 温湿度监测系统</h3>
+          <p class="project-stack">
+            <span>STM32</span><span>嵌入式 C</span><span>Android</span><span>Proteus</span><span>PCB 焊接</span>
+          </p>
+          <ul class="project-points">
+            <li>基于 <b>STM32F103</b> 完成固件开发，用 GPIO、ADC、定时器与 I2C / UART 外设实现温湿度采集、阈值判断与继电器联动。</li>
+            <li>开发<b>配套安卓 App</b>，通过<b>蓝牙与设备通信</b>，实现实时数据可视化、历史曲线绘制与阈值超限告警推送。</li>
+            <li>先在 <b>Proteus 虚拟仿真</b>中验证电路与程序逻辑，再烧录实物；完成 <b>PCB 手工焊接与整机调试</b>，用万用表排查虚焊短路。</li>
+          </ul>
+          <button class="link-btn" type="button" data-modal="modal-stm32">
+            查看项目详情
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          </button>
+
+          <!-- 弹窗详情内容（页面内隐藏，仅用于弹窗） -->
+          <div id="modal-stm32" hidden>
+            <div class="modal-meta">
+              <div><span class="k">项目周期</span><span class="v">2026.01 — 2026.06</span></div>
+              <div><span class="k">项目类型</span><span class="v">嵌入式 + 移动端综合项目</span></div>
+              <div><span class="k">技术栈</span><span class="v">STM32F103 / 嵌入式 C / Android / Proteus / PCB 焊接</span></div>
+            </div>
+            <h4>核心工作</h4>
+            <ul>
+              <li>基于 <b>STM32F103</b> 完成固件开发，使用 GPIO、ADC、定时器与 I2C / UART 外设实现温湿度采集、阈值判断与继电器联动。</li>
+              <li>开发<b>配套安卓 App</b>，通过<b>蓝牙与设备通信</b>，实现实时数据可视化、历史曲线绘制与阈值超限告警推送。</li>
+              <li>先在 <b>Proteus 虚拟仿真</b>中验证电路与程序逻辑，再烧录实物；完成 <b>PCB 手工焊接与整机调试</b>，用万用表排查虚焊与短路问题。</li>
+            </ul>
+            <h4>涉及能力</h4>
+            <div class="chip-row">
+              <span class="chip">嵌入式固件开发</span>
+              <span class="chip">外设驱动与采集</span>
+              <span class="chip">蓝牙通信</span>
+              <span class="chip">安卓端开发</span>
+              <span class="chip">电路仿真</span>
+              <span class="chip">PCB 焊接与调试</span>
+              <span class="chip">软硬件联合定位问题</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 项目 2 -->
+        <article class="card project-card reveal" data-cat="web">
+          <div class="project-top">
+            <span class="project-badge">Web 全栈</span>
+            <time class="project-date">2025.03 — 2025.06</time>
+          </div>
+          <h3 class="project-title">职工信息管理系统</h3>
+          <p class="project-stack">
+            <span>Python</span><span>Flask</span><span>MySQL</span><span>Vue.js</span>
+          </p>
+          <ul class="project-points">
+            <li>采用 <b>Flask 蓝图（Blueprint）</b>拆分认证、员工档案与部门管理模块，视图与路由解耦，便于扩展维护。</li>
+            <li>实现职工信息<b>增删改查</b>接口与登录注册流程，密码以<b>哈希加盐</b>方式存储，避免明文落库。</li>
+            <li>基于 <b>角色权限模型</b>区分管理员与普通用户操作范围，普通用户仅可查看本人档案。</li>
+            <li>前后端通过 <b>RESTful 接口 + JSON</b> 交换数据，前端用 Vue.js 完成表格渲染与表单校验。</li>
+          </ul>
+          <button class="link-btn" type="button" data-modal="modal-employee">
+            查看项目详情
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          </button>
+
+          <div id="modal-employee" hidden>
+            <div class="modal-meta">
+              <div><span class="k">项目周期</span><span class="v">2025.03 — 2025.06</span></div>
+              <div><span class="k">项目类型</span><span class="v">Web 全栈管理系统</span></div>
+              <div><span class="k">技术栈</span><span class="v">Python / Flask / MySQL / Vue.js</span></div>
+            </div>
+            <h4>核心工作</h4>
+            <ul>
+              <li>采用 <b>Flask 蓝图（Blueprint）</b>拆分认证、员工档案与部门管理模块，视图与路由解耦，便于后续扩展维护。</li>
+              <li>实现职工信息<b>增删改查</b>接口与登录注册流程，密码以<b>哈希加盐</b>方式存储，避免明文落库。</li>
+              <li>基于<b>角色权限模型</b>区分管理员与普通用户操作范围，普通用户仅可查看本人档案。</li>
+              <li>前后端通过 <b>RESTful 接口 + JSON</b> 交换数据，前端使用 Vue.js 完成表格渲染与表单校验。</li>
+            </ul>
+            <h4>涉及能力</h4>
+            <div class="chip-row">
+              <span class="chip">模块化后端架构</span>
+              <span class="chip">RESTful 接口设计</span>
+              <span class="chip">数据库设计</span>
+              <span class="chip">密码安全存储</span>
+              <span class="chip">角色权限控制</span>
+              <span class="chip">前后端分离联调</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 教育经历 ========== -->
+  <section class="section section-alt" id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">Education</p>
+        <h2 class="section-title">教育经历</h2>
+        <p class="section-sub">从工业互联网到计算机科学，一条持续向上走的专业成长线。</p>
+      </div>
+
+      <ol class="timeline">
+        <li class="timeline-item reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body card">
+            <div class="timeline-head">
+              <h3>重庆外语外事学院 <span class="badge">统招专升本</span></h3>
+              <time>2025.09 — 2027.06</time>
+            </div>
+            <p class="timeline-major">计算机科学与技术 · 本科</p>
+            <p class="timeline-note">通过重庆市统招专升本统一考试选拔升入本科，系统学习数据结构、计算机网络、数据库原理与软件工程。</p>
+            <div class="chip-row">
+              <span class="chip">数据结构</span>
+              <span class="chip">计算机网络</span>
+              <span class="chip">数据库原理</span>
+              <span class="chip">软件工程</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="timeline-item reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-body card">
+            <div class="timeline-head">
+              <h3>重庆工业职业技术大学</h3>
+              <time>2022.09 — 2025.06</time>
+            </div>
+            <p class="timeline-major">工业互联网技术 · 专科</p>
+            <p class="timeline-note">主修课程：Java 程序设计、数据库应用、Web 前端开发、物联网技术应用。</p>
+            <div class="chip-row">
+              <span class="chip">Java 程序设计</span>
+              <span class="chip">数据库应用</span>
+              <span class="chip">Web 前端开发</span>
+              <span class="chip">物联网技术应用</span>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========== 证书荣誉 ========== -->
+  <section class="section" id="certificates">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">Certificates</p>
+        <h2 class="section-title">职业证书</h2>
+        <p class="section-sub">三张与开发、工业互联网、物联网方向对应的职业技能证书。</p>
+      </div>
+
+      <div class="cert-grid">
+        <article class="card cert-card reveal">
+          <span class="cert-ico" aria-hidden="true"><svg class="icon"><use href="#i-cert"></use></svg></span>
+          <h3>JavaWeb 应用开发</h3>
+          <p class="cert-level">中级</p>
+          <p class="cert-desc">覆盖 JavaWeb 开发核心技能，与后端开发岗位直接相关。</p>
+        </article>
+
+        <article class="card cert-card reveal">
+          <span class="cert-ico" aria-hidden="true"><svg class="icon"><use href="#i-cert"></use></svg></span>
+          <h3>工业互联网实施与运维</h3>
+          <p class="cert-level">中级</p>
+          <p class="cert-desc">面向工业互联网平台的部署、实施与日常运维能力。</p>
+        </article>
+
+        <article class="card cert-card reveal">
+          <span class="cert-ico" aria-hidden="true"><svg class="icon"><use href="#i-cert"></use></svg></span>
+          <h3>物联网技术工程师</h3>
+          <p class="cert-level">职业技能证书</p>
+          <p class="cert-desc">涵盖物联网感知层、通信与应用的系统化技术能力。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 自我评价 ========== -->
+  <section class="section section-alt" id="evaluation">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">Summary</p>
+        <h2 class="section-title">自我评价</h2>
+      </div>
+
+      <div class="eval-grid">
+        <article class="card eval-card reveal">
+          <span class="eval-ico" aria-hidden="true"><svg class="icon"><use href="#i-code"></use></svg></span>
+          <h3>技术基础</h3>
+          <p>
+            工业互联网与计算机科学双学科背景。在完整 Web 项目中完成数据库结构设计与联合索引优化、
+            事务与乐观锁并发控制、Session + 过滤器两级权限控制，能独立定位并修复空指针、SQL 语法与
+            前后端字段不一致等缺陷；同时具备软硬件协同能力，可完成 <b>STM32 固件开发、PCB 焊接调试</b>
+            与<b>配套安卓 App 开发</b>，打通硬件采集、蓝牙通信到移动端可视化的完整链路。
+          </p>
+        </article>
+
+        <article class="card eval-card reveal">
+          <span class="eval-ico" aria-hidden="true"><svg class="icon"><use href="#i-branch"></use></svg></span>
+          <h3>工程意识</h3>
+          <p>
+            习惯用 <b>Git</b> 管理版本，代码按模块划分，便于他人接手维护；熟练使用
+            <b>Claude Code、Cursor、GitHub Copilot、DeepSeek</b> 等 AI 工具，
+            借助 Agent 完成代码生成、报错定位与技术方案调研，能显著提升开发与学习效率。
+          </p>
+        </article>
+
+        <article class="card eval-card reveal">
+          <span class="eval-ico" aria-hidden="true"><svg class="icon"><use href="#i-users"></use></svg></span>
+          <h3>实践与特质</h3>
+          <p>
+            曾在暑期担任健身房销售主谈手并取得团队前列业绩，练就了<b>较强的口语表达与沟通能力</b>；
+            也带过 <b>4 人小组</b>完成图书室的运营与台账规范化，具备团队统筹与流程优化意识。
+            性格踏实稳重，能承受项目节奏压力，对技术方向保持开放，愿意在真实项目中持续提升。
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 联系我 ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-kicker">Contact</p>
+        <h2 class="section-title">联系我</h2>
+        <p class="section-sub">简历筛选之外，也欢迎直接聊聊。点击卡片即可复制联系方式。</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-side">
+          <button class="card contact-card reveal" type="button" data-copy="1499938212@qq.com" data-copy-label="邮箱">
+            <span class="contact-ico" aria-hidden="true"><svg class="icon"><use href="#i-mail"></use></svg></span>
+            <span class="contact-body">
+              <span class="contact-k">邮箱</span>
+              <span class="contact-v">1499938212@qq.com</span>
+            </span>
+            <span class="contact-act" aria-hidden="true"><svg class="icon"><use href="#i-copy"></use></svg></span>
+          </button>
+
+          <button class="card contact-card reveal" type="button" data-copy="18584659595" data-copy-label="手机号">
+            <span class="contact-ico" aria-hidden="true"><svg class="icon"><use href="#i-phone"></use></svg></span>
+            <span class="contact-body">
+              <span class="contact-k">手机</span>
+              <span class="contact-v">185-8465-9595</span>
+            </span>
+            <span class="contact-act" aria-hidden="true"><svg class="icon"><use href="#i-copy"></use></svg></span>
+          </button>
+
+          <div class="card contact-card is-static reveal">
+            <span class="contact-ico" aria-hidden="true"><svg class="icon"><use href="#i-pin"></use></svg></span>
+            <span class="contact-body">
+              <span class="contact-k">所在地</span>
+              <span class="contact-v">重庆市</span>
+            </span>
+          </div>
+
+          <div class="card contact-card is-static reveal">
+            <span class="contact-ico" aria-hidden="true"><svg class="icon"><use href="#i-download"></use></svg></span>
+            <span class="contact-body">
+              <span class="contact-k">简历文件</span>
+              <span class="contact-v">PDF 格式，一页版</span>
+            </span>
+            <a class="contact-act contact-act-link" href="assets/files/resume.pdf" download="谌基涛-简历.pdf" aria-label="下载简历 PDF">
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="card contact-form reveal" id="contactForm" novalidate>
+          <h3 class="card-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
+            发送消息
+          </h3>
+          <p class="form-hint">填写后点击发送，会通过你的默认邮件客户端把内容发到我的邮箱。</p>
+
+          <div class="field">
+            <label for="cf-name">你的称呼 <span class="req">*</span></label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="例如：张 HR / 李经理">
+          </div>
+
+          <div class="field">
+            <label for="cf-from">你的邮箱 <span class="req">*</span></label>
+            <input id="cf-from" name="from" type="email" required autocomplete="email" placeholder="name@company.com">
+          </div>
+
+          <div class="field">
+            <label for="cf-subject">主题</label>
+            <input id="cf-subject" name="subject" type="text" placeholder="例如：面试邀约 / 岗位咨询">
+          </div>
+
+          <div class="field">
+            <label for="cf-message">内容 <span class="req">*</span></label>
+            <textarea id="cf-message" name="message" rows="5" required placeholder="简单说明岗位、公司或想聊的内容…"></textarea>
+          </div>
+
+          <p class="form-error" id="formError" role="alert" hidden></p>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">
+              <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
+              发送邮件
+            </button>
+            <button class="btn btn-ghost" type="reset">清空</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== 页脚 ========== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year">2025</span> 谌基涛 · 计算机科学与技术（本科·2027 届）</p>
+    <p class="footer-meta">
+      <a href="assets/files/resume.pdf" download="谌基涛-简历.pdf">下载简历</a>
+      <span aria-hidden="true">·</span>
+      <a href="mailto:1499938212@qq.com">1499938212@qq.com</a>
+      <span aria-hidden="true">·</span>
+      <span>本页最后更新：<time id="lastUpdated">—</time></span>
+    </p>
+  </div>
+</footer>
+
+<!-- ========== 回到顶部 ========== -->
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部" title="回到顶部">
+  <svg class="icon" aria-hidden="true"><use href="#i-up"></use></svg>
+</button>
+
+<!-- ========== 项目详情弹窗 ========== -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <header class="modal-head">
+      <h3 id="modalTitle">项目详情</h3>
+      <button class="icon-btn modal-close" type="button" data-close="1" aria-label="关闭弹窗">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ========== 复制提示 ========== -->
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<!-- ========== 图标库（内联 SVG，离线可用） ========== -->
+<svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M4 20h16"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V3h10v6"/><rect x="3.5" y="9" width="17" height="8" rx="2"/><path d="M7 15h10v6H7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8.5 8-4.5 4 4.5 4"/><path d="m15.5 8 4.5 4-4.5 4"/><path d="m13.5 4-3 16"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6.5" rx="2"/><rect x="3" y="13.5" width="18" height="6.5" rx="2"/><path d="M7 7.2h.01M7 16.8h.01"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M9 9.5V20"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></symbol>
+  <symbol id="i-cert" viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="5.5"/><path d="m8.5 14.5-1 6.5 4.5-2.5 4.5 2.5-1-6.5"/></symbol>
+  <symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6.5" cy="6" r="2.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="12" r="2.5"/><path d="M6.5 8.5v7M9 6h3.5a3 3 0 0 1 3 3v.5M9 18h3.5a3 3 0 0 0 3-3v-.5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16 5.2a3.5 3.5 0 0 1 0 6.6M17.5 20a6.4 6.4 0 0 0-2-4.6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 5.5A2 2 0 0 0 13.5 3.5h-8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10.5 13.5"/><path d="M21 3 14.5 21l-4-7.5L3 9.5z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m12.5 6 5.5 6-5.5 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+</svg>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

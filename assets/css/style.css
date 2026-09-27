@@ -1185,8 +1185,8 @@ button.contact-card:hover .contact-act { color: var(--accent); background: var(-
 .contact-wechat[hidden] { display: none !important; }
 .wechat-qr {
   flex: none;
-  width: 116px;
-  height: 116px;
+  width: 128px;
+  height: 128px;
   border-radius: 10px;
   background: #fff;
   padding: 6px;

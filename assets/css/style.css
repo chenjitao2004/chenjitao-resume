@@ -7,23 +7,43 @@
    1. 设计变量（明暗两套主题）
    -------------------------------------------------------------------------- */
 :root {
-  --bg:            #f4f7fb;
-  --bg-alt:        #ffffff;
-  --surface:       #ffffff;
-  --surface-2:     #f7f9fc;
+  /* ---- 玻璃面 ---- */
+  --surface:       rgba(255, 255, 255, .60);
+  --surface-2:     rgba(255, 255, 255, .44);
+  --bg:            #e9f1fd;
+  --bg-alt:        rgba(255, 255, 255, .30);
+  --glass-edge:    rgba(255, 255, 255, .72);   /* 玻璃高光边 */
+  --glass-sheen:   rgba(255, 255, 255, .55);   /* 玻璃斜向反光 */
+  --glass-nav:     rgba(255, 255, 255, .58);
+  --glass-chip:    rgba(255, 255, 255, .50);
+  --glass-blur:    20px;
+  --glass-blur-sm: 10px;
+  --glass-shadow:  0 10px 34px -14px rgba(15, 23, 42, .30),
+                   inset 0 1px 0 rgba(255, 255, 255, .85);
+
+  /* ---- 文字与线条 ---- */
   --text:          #0f172a;
-  --text-2:        #475569;
-  --muted:         #6b7c93;
-  --border:        #e4eaf2;
-  --border-strong: #d3dded;
+  --text-2:        #3d4d66;
+  --muted:         #62748d;
+  --border:        rgba(15, 23, 42, .10);
+  --border-strong: rgba(15, 23, 42, .16);
   --heading:       #14314f;
   --accent:        #2563eb;
-  --accent-soft:   #eaf1fe;
+  --accent-soft:   rgba(37, 99, 235, .10);
   --accent-2:      #0ea5e9;
   --ring:          rgba(37, 99, 235, .32);
-  --shadow-sm:     0 1px 2px rgba(15, 23, 42, .05);
-  --shadow:        0 2px 4px rgba(15, 23, 42, .04), 0 12px 28px -16px rgba(15, 23, 42, .28);
-  --shadow-lg:     0 24px 60px -24px rgba(15, 23, 42, .38);
+
+  --shadow-sm:     0 2px 10px -6px rgba(15, 23, 42, .30);
+  --shadow:        0 18px 40px -20px rgba(15, 23, 42, .38);
+  --shadow-lg:     0 30px 70px -30px rgba(15, 23, 42, .50);
+
+  /* ---- 流动背景的光斑 ---- */
+  --blob-1: rgba(59, 130, 246, .40);
+  --blob-2: rgba(56, 189, 248, .34);
+  --blob-3: rgba(139, 92, 246, .30);
+  --blob-4: rgba(20, 184, 166, .26);
+  --blob-opacity: .75;
+  --flow-sweep: rgba(255, 255, 255, .34);
 
   --radius:   16px;
   --radius-sm: 10px;
@@ -35,23 +55,38 @@
 }
 
 html[data-theme="dark"] {
-  --bg:            #070d18;
-  --bg-alt:        #0b1424;
-  --surface:       #0f1a2c;
-  --surface-2:     #0c1626;
+  --surface:       rgba(21, 34, 57, .55);
+  --surface-2:     rgba(255, 255, 255, .05);
+  --bg:            #050a13;
+  --bg-alt:        rgba(255, 255, 255, .03);
+  --glass-edge:    rgba(255, 255, 255, .13);
+  --glass-sheen:   rgba(255, 255, 255, .10);
+  --glass-nav:     rgba(8, 15, 28, .62);
+  --glass-chip:    rgba(255, 255, 255, .06);
+  --glass-shadow:  0 12px 36px -16px rgba(0, 0, 0, .85),
+                   inset 0 1px 0 rgba(255, 255, 255, .07);
+
   --text:          #e6edf7;
   --text-2:        #aab9cf;
   --muted:         #8698b3;
-  --border:        #1d2b44;
-  --border-strong: #2a3b58;
+  --border:        rgba(255, 255, 255, .10);
+  --border-strong: rgba(255, 255, 255, .16);
   --heading:       #e8f0fb;
   --accent:        #5b93f8;
-  --accent-soft:   #14243d;
+  --accent-soft:   rgba(91, 147, 248, .14);
   --accent-2:      #38bdf8;
   --ring:          rgba(91, 147, 248, .38);
-  --shadow-sm:     0 1px 2px rgba(0, 0, 0, .4);
-  --shadow:        0 2px 4px rgba(0, 0, 0, .3), 0 14px 32px -18px rgba(0, 0, 0, .8);
-  --shadow-lg:     0 26px 64px -26px rgba(0, 0, 0, .9);
+
+  --shadow-sm:     0 2px 10px -6px rgba(0, 0, 0, .70);
+  --shadow:        0 18px 44px -22px rgba(0, 0, 0, .90);
+  --shadow-lg:     0 30px 72px -30px rgba(0, 0, 0, .95);
+
+  --blob-1: rgba(59, 130, 246, .42);
+  --blob-2: rgba(56, 189, 248, .34);
+  --blob-3: rgba(139, 92, 246, .36);
+  --blob-4: rgba(20, 184, 166, .26);
+  --blob-opacity: .70;
+  --flow-sweep: rgba(255, 255, 255, .09);
 }
 
 /* --------------------------------------------------------------------------
@@ -63,6 +98,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 16px);
   -webkit-text-size-adjust: 100%;
+  /* 底色放在根元素上，body 保持透明，流动光斑才能透出来 */
+  background: var(--bg);
 }
 
 body {
@@ -71,9 +108,105 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: var(--text);
-  background: var(--bg);
+  background: transparent;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* ---- 流动背景：四团缓慢漂移的光斑 + 一道扫光 ---- */
+.flow-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flow-bg .blob {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  opacity: var(--blob-opacity);
+  filter: blur(86px);
+  will-change: transform;
+}
+
+/* 光斑尽量压到四角，让内容区留出呼吸空间 */
+.flow-bg .b1 {
+  width: 34vmax; height: 34vmax;
+  top: -18vmax; left: -13vmax;
+  background: var(--blob-1);
+  animation: drift-a 24s ease-in-out infinite;
+}
+.flow-bg .b2 {
+  width: 30vmax; height: 30vmax;
+  top: -14vmax; right: -15vmax;
+  background: var(--blob-2);
+  animation: drift-b 30s ease-in-out infinite;
+}
+.flow-bg .b3 {
+  width: 33vmax; height: 33vmax;
+  bottom: -20vmax; left: -8vmax;
+  background: var(--blob-3);
+  animation: drift-c 36s ease-in-out infinite;
+}
+.flow-bg .b4 {
+  width: 27vmax; height: 27vmax;
+  bottom: -16vmax; right: -6vmax;
+  background: var(--blob-4);
+  animation: drift-d 27s ease-in-out infinite;
+}
+
+/* 斜向扫光，制造“流动”的方向感 */
+.flow-bg::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: linear-gradient(105deg,
+              transparent 38%,
+              var(--flow-sweep) 50%,
+              transparent 62%);
+  animation: sweep 22s linear infinite;
+}
+
+/* 细微噪点，让玻璃面有磨砂质感 */
+.flow-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(8vmax, 6vmax, 0) scale(1.14); }
+  66%      { transform: translate3d(-5vmax, 11vmax, 0) scale(.94); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  40%      { transform: translate3d(-10vmax, 8vmax, 0) scale(1.10); }
+  70%      { transform: translate3d(-3vmax, -6vmax, 0) scale(.92); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  35%      { transform: translate3d(12vmax, -7vmax, 0) scale(1.12); }
+  68%      { transform: translate3d(-8vmax, -4vmax, 0) scale(.96); }
+}
+@keyframes drift-d {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  45%      { transform: translate3d(-9vmax, -9vmax, 0) scale(1.16); }
+  75%      { transform: translate3d(5vmax, 4vmax, 0) scale(.9); }
+}
+@keyframes sweep {
+  0%   { transform: translate3d(-32%, -32%, 0); }
+  100% { transform: translate3d(32%, 32%, 0); }
+}
+/* 渐变「流动」通用动画：配合 background-size: 200% 使用 */
+@keyframes flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 h1, h2, h3, h4 { margin: 0; line-height: 1.3; color: var(--heading); font-weight: 700; }
@@ -133,10 +266,15 @@ time { font-style: normal; }
 }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  position: relative;
+  background:
+    linear-gradient(145deg, var(--glass-sheen), transparent 46%),
+    var(--surface);
+  border: 1px solid var(--glass-edge);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 
@@ -168,16 +306,21 @@ time { font-style: normal; }
 .btn-sm { padding: 8px 15px; font-size: .875rem; }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(110deg, var(--accent), var(--accent-2), var(--accent));
+  background-size: 220% 100%;
+  animation: flow 7s linear infinite;
   color: #fff;
-  box-shadow: 0 10px 22px -12px var(--accent);
+  box-shadow: 0 10px 24px -12px var(--accent),
+              inset 0 1px 0 rgba(255, 255, 255, .35);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -14px var(--accent); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px var(--accent); }
 
 .btn-ghost {
-  background: var(--surface);
-  border-color: var(--border-strong);
+  background: var(--glass-chip);
+  border-color: var(--glass-edge);
   color: var(--text);
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur-sm)) saturate(160%);
 }
 .btn-ghost:hover {
   border-color: var(--accent);
@@ -294,27 +437,29 @@ time { font-style: normal; }
   left: 0; bottom: 0;
   width: 46px; height: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
+  background-size: 200% 100%;
+  animation: flow 5s linear infinite;
 }
 .section-sub { margin-top: 14px; color: var(--text-2); font-size: .98rem; }
 
 /* --------------------------------------------------------------------------
-   4. 顶部导航
+   4. 顶部导航（玻璃）
    -------------------------------------------------------------------------- */
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
   height: var(--header-h);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  background: var(--glass-nav);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
   border-bottom: 1px solid transparent;
   transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
 }
 .site-header.is-scrolled {
-  border-bottom-color: var(--border);
-  box-shadow: 0 6px 24px -20px rgba(15, 23, 42, .6);
+  border-bottom-color: var(--glass-edge);
+  box-shadow: 0 10px 30px -24px rgba(15, 23, 42, .75);
 }
 
 .progress-bar {
@@ -419,9 +564,8 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(58% 52% at 78% 12%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 68%),
-    radial-gradient(46% 44% at 6% 22%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 70%);
+  background: radial-gradient(70% 56% at 50% 0%,
+              color-mix(in srgb, var(--surface) 60%, transparent), transparent 72%);
 }
 .hero-bg::after {
   content: "";
@@ -431,7 +575,7 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
     linear-gradient(to right, var(--border) 1px, transparent 1px),
     linear-gradient(to bottom, var(--border) 1px, transparent 1px);
   background-size: 56px 56px;
-  opacity: .5;
+  opacity: .45;
   mask-image: radial-gradient(72% 60% at 50% 34%, #000 12%, transparent 76%);
   -webkit-mask-image: radial-gradient(72% 60% at 50% 34%, #000 12%, transparent 76%);
 }
@@ -448,13 +592,15 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
   align-items: center;
   gap: 9px;
   padding: 5px 15px 5px 12px;
-  border: 1px solid var(--border-strong);
+  border: 1px solid var(--glass-edge);
   border-radius: 999px;
-  background: var(--surface);
+  background: var(--glass-chip);
   color: var(--text-2);
   font-size: .85rem;
   font-weight: 500;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
+  backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
 }
 .hero-hello .dot {
   width: 8px; height: 8px;
@@ -464,11 +610,17 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
   animation: pulse 1.8s ease-in-out infinite;
 }
 
+/* 姓名：渐变文字缓慢流动（只用 heading / accent 两色，保证任何帧都够深） */
 .hero-name {
   margin: 18px 0 6px;
   font-size: clamp(2.6rem, 7vw, 4rem);
   letter-spacing: .06em;
-  background: linear-gradient(120deg, var(--heading) 30%, var(--accent) 100%);
+  background: linear-gradient(100deg,
+              var(--heading) 0%, var(--accent) 20%,
+              var(--heading) 42%, var(--accent) 64%,
+              var(--heading) 86%, var(--accent) 100%);
+  background-size: 200% 100%;
+  animation: flow 14s linear infinite;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -537,7 +689,7 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
 }
 .hero-stats dd { margin: 2px 0 0; font-size: .84rem; color: var(--muted); }
 
-/* 头像 */
+/* 头像：玻璃边框 + 呼吸光晕 */
 .hero-photo { position: relative; justify-self: center; }
 .photo-frame {
   position: relative;
@@ -545,11 +697,23 @@ html[data-theme="dark"] .icon-moon { display: inline-block; }
   aspect-ratio: 3 / 4;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-edge);
   background: var(--surface);
-  box-shadow: var(--shadow-lg);
   transform: rotate(2deg);
   transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+  animation: halo 7s ease-in-out infinite;
+}
+@keyframes halo {
+  0%, 100% {
+    box-shadow: var(--shadow-lg),
+                0 0 0 1px var(--glass-edge),
+                0 0 46px -14px var(--accent);
+  }
+  50% {
+    box-shadow: var(--shadow-lg),
+                0 0 0 1px var(--glass-edge),
+                0 0 78px -8px var(--accent-2);
+  }
 }
 .photo-frame::after {
   content: "";
@@ -1318,4 +1482,105 @@ html[data-theme="dark"] .toast { background: var(--accent); }
     transition-duration: .001ms !important;
   }
   .js .reveal { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   19. 玻璃拟态细节：小元件与主体保持统一的磨砂质感
+   -------------------------------------------------------------------------- */
+.icon-btn,
+.nav-toggle,
+.to-top,
+.filter-btn,
+.photo-badge,
+.hero-tags li,
+.skill-tags li,
+.project-stack span,
+.field input,
+.field textarea {
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
+  backdrop-filter: blur(var(--glass-blur-sm)) saturate(170%);
+}
+
+.hero-tags li,
+.skill-tags li,
+.project-stack span,
+.filter-btn,
+.icon-btn,
+.nav-toggle,
+.photo-badge {
+  border-color: var(--glass-edge);
+  background: var(--glass-chip);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+.to-top {
+  border-color: var(--glass-edge);
+  background: var(--glass-chip);
+  box-shadow: var(--glass-shadow);
+}
+
+.field input:focus,
+.field textarea:focus { background: var(--glass-chip); }
+
+/* 移动端抽屉菜单：玻璃底需要更实一点，保证文字可读 */
+@media (max-width: 900px) {
+  .nav-menu {
+    background: color-mix(in srgb, var(--bg) 84%, transparent);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+  }
+}
+
+/* 弹窗面板：更厚的玻璃 */
+.modal-panel {
+  background:
+    linear-gradient(150deg, var(--glass-sheen), transparent 50%),
+    var(--surface);
+  border-color: var(--glass-edge);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+}
+
+/* 卡片悬停：玻璃更亮，边缘透出主题色 */
+.about-card:hover, .skill-card:hover, .project-card:hover,
+.cert-card:hover, .eval-card:hover, .timeline-body:hover {
+  border-color: var(--glass-edge);
+  box-shadow: var(--glass-shadow), 0 0 0 1px var(--glass-edge),
+              0 26px 54px -30px var(--accent);
+}
+
+/* 进度条与项目卡顶边：流动渐变 */
+.progress-bar > span,
+.project-card::before {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
+  background-size: 200% 100%;
+  animation: flow 5s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   20. 打印：关闭玻璃与流动，回到干净的纯白纸面
+   -------------------------------------------------------------------------- */
+@media print {
+  .flow-bg { display: none !important; }
+  html { background: #fff !important; }
+
+  .card, .timeline-body, .modal-panel, .site-header, .timeline-body,
+  .icon-btn, .nav-toggle, .to-top, .filter-btn, .photo-badge,
+  .hero-tags li, .skill-tags li, .project-stack span,
+  .field input, .field textarea, .btn-ghost, .hero-hello {
+    background: #fff !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  .card, .timeline-body { border: 1px solid #d5dbe5 !important; }
+
+  .hero-name {
+    background: none !important;
+    -webkit-text-fill-color: #14314f !important;
+    color: #14314f !important;
+  }
+  .hero-name, .btn-primary, .section-title::after, .progress-bar > span,
+  .project-card::before, .photo-frame,
+  .flow-bg, .flow-bg::before, .flow-bg::after { animation: none !important; }
 }

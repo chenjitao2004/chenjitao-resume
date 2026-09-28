@@ -110,14 +110,29 @@ git push -u origin main
 
 ## 八、联系方式功能（重要，建议花 2 分钟配置）
 
-### 8.1 在线表单（已接入 FormSubmit，**待激活**）
+### 8.1 在线表单（已接入 FormSubmit，**已激活可用**）
 
 表单已接上 **FormSubmit**（免注册的免费表单转发服务），访客点「发送消息」会
 **直接把内容投递到 `1499938212@qq.com`**，不再依赖他电脑上装没装邮件客户端。
 
-> ⚠️ **还差最后一步**：FormSubmit 要求每个收件地址首次使用前激活一次。
-> 你的 QQ 邮箱里应该已经收到一封标题含 **"Activate Form"** 的邮件，
-> 点里面的链接即可，**之后永久生效**。没收到就去垃圾箱找一下。
+线上验证结果：
+
+```
+POST https://formsubmit.co/ajax/1499938212@qq.com
+Origin/Referer = https://chenjitao2004.github.io/chenjitao-resume/
+→ {"success":"true","message":"The form was submitted successfully."}
+```
+
+> ⚠️ **FormSubmit 的激活是按「来源域名」绑定的** —— 这是最容易踩的坑。
+> 激活邮件里的页面上会显示一行 `Form at: ...`，**那一行必须是你的正式网址**。
+>
+> 如果显示的是 `http://127.0.0.1:...`（本地预览地址）或别的域名，说明激活绑错了地方，
+> 正式网站提交时会一直提示 "This form needs Activation"。
+>
+> **正确的补救办法**：在正式网站上真实提交一次表单，FormSubmit 会针对该域名
+> 重新发一封激活邮件，点开并确认 `Form at:` 是你的正式网址后再激活。
+>
+> 排查时不要在 localhost 上测试——那会被当成另一个域名，永远显示"未激活"。
 
 **为什么不用 Web3Forms**：已实测，Web3Forms 对浏览器的 CORS 预检请求（OPTIONS）
 一律返回 403，且响应里没有任何 CORS 头，浏览器会直接判定请求失败 ——

@@ -24,15 +24,22 @@
     // 接收联系表单的邮箱
     mailTo: '1499938212@qq.com',
 
-    /* ---- 在线表单投递（Web3Forms）--------------------------------------
-       去 https://web3forms.com 填一次邮箱，会立刻给你一串 access key，
-       粘到下面引号里即可。填好之后访客点「发送消息」就直接进你邮箱，
-       不再依赖他电脑上装没装邮件客户端。
+    /* ---- 在线表单投递 --------------------------------------------------
+       当前使用 FormSubmit（免注册，邮件直接发到 mailTo 那个地址）。
 
-       留空也完全没问题：会自动退回「打开访客的邮件客户端」模式。
+       ⚠️ 首次使用必须先激活：FormSubmit 会给你发一封标题含 "Activate Form"
+          的邮件，点里面的链接即可，之后永久生效。
+
+       想换服务也可以：
+       · Formspree：formEndpoint 填 'https://formspree.io/f/你的表单ID'，key 留空
+       · Web3Forms：formEndpoint 填 'https://api.web3forms.com/submit'，填上 key
+                    （实测 Web3Forms 对 CORS 预检一律 403，浏览器端用不了，仅作备用）
+
+       代码用 FormData 提交，不触发 CORS 预检 —— 不要改成 application/json。
+       两个值都留空时，自动退回「打开访客的邮件客户端」模式。
        ------------------------------------------------------------------ */
     formAccessKey: '',
-    formEndpoint: 'https://api.web3forms.com/submit'
+    formEndpoint: 'https://formsubmit.co/ajax/1499938212@qq.com'
   };
 
   /* ------------------------------------------------------------------
@@ -579,41 +586,56 @@
         body: message + '\n\n——\n' + name + '\n' + email
       };
 
-      // 还没配置 access key：直接用邮件客户端，并说清楚
-      if (!CONFIG.formAccessKey) {
+      /* 判断依据是「有没有配投递地址」，不是「有没有 key」。
+         FormSubmit / Formspree 都不需要 key，用 key 判断会永远走不到在线投递。 */
+      if (!CONFIG.formEndpoint) {
         openMailClient(mail);
-        showOk('已打开你的邮件客户端，确认后发送即可。');
         form.reset();
+        showOk('已打开你的邮件客户端，确认后发送即可。');   // 必须放在 reset 之后
         return;
       }
 
       setLoading(true);
 
-      fetch(CONFIG.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: CONFIG.formAccessKey,
-          subject: finalSubject,
-          from_name: name,
-          name: name,
-          email: email,
-          message: message,
-          botcheck: false
-        })
-      })
+      /* 用 FormData 提交，不手动设 Content-Type。
+         multipart/form-data 属于 CORS 的「安全内容类型」，浏览器不会先发
+         OPTIONS 预检请求 —— Web3Forms 会直接 403 掉预检，用 application/json
+         就必然失败。多带的字段对其它服务无副作用，所以这里一次兼容三家。 */
+      var payload = new FormData();
+      if (CONFIG.formAccessKey) payload.append('access_key', CONFIG.formAccessKey); // Web3Forms
+      payload.append('name', name);
+      payload.append('email', email);
+      payload.append('message', message);
+      payload.append('from_name', name);
+      payload.append('subject', finalSubject);    // Web3Forms 用
+      payload.append('_subject', finalSubject);   // FormSubmit 用
+      payload.append('_template', 'table');       // FormSubmit 邮件排版
+      payload.append('_captcha', 'false');        // FormSubmit：关掉验证码，否则 AJAX 会被挡
+      payload.append('botcheck', '');
+
+      fetch(CONFIG.formEndpoint, { method: 'POST', body: payload })
         .then(function (res) {
-          return res.json().catch(function () { return {}; })
-            .then(function (data) { return { ok: res.ok, data: data }; });
+          return res.text().then(function (text) {
+            var data = {};
+            try { data = JSON.parse(text); } catch (e) { data = { raw: text }; }
+            return { ok: res.ok, status: res.status, data: data };
+          });
         })
         .then(function (res) {
-          if (res.ok && res.data && res.data.success) {
+          /* 三家成功时的返回各不相同：
+             FormSubmit → {"success":"true"}（字符串）
+             Web3Forms  → {"success":true}（布尔）
+             Formspree  → {"ok":true} */
+          var s = res.data ? res.data.success : null;
+          var good = res.ok &&
+            (s === true || s === 'true' || (res.data && res.data.ok === true));
+          if (good) {
             setLoading(false);
-            showOk('已经发送到我的邮箱了，我会尽快回复你。');
             form.reset();
+            showOk('已经发送到我的邮箱了，我会尽快回复你。');   // 必须放在 reset 之后
             toast('发送成功');
           } else {
-            throw new Error((res.data && res.data.message) || 'send failed');
+            throw new Error('submit failed: HTTP ' + res.status);
           }
         })
         .catch(function () {
